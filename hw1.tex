@@ -187,7 +187,7 @@ Due~\hwdue}
 \mid \Sigma \mid \times \mid Q \mid
 \mbox { transitions}
 \end{equation}
-In a DFA, the max number of transitions is the total number of characters in the alphabet times the total number of states.
+In a DFA, there is exactly 1 transition for every state-input pair. Thus, the number of transitions is the total number of possible inputs in the alphabet multiplied by the total number of possible states.
 
 
 \item \textbf{[2 points]}  In a NFA $(Q, \Sigma, \delta, q_0, F)$, what is the maximum number of transitions? A transition is defined as a pair $(q \in Q, c \in \Sigma_{\epsilon})$. You can assume there are no $\epsilon$-transitions from a state to itself. Your answer should be in terms of the given variables. Briefly justify your answer.
@@ -195,10 +195,10 @@ In a DFA, the max number of transitions is the total number of characters in the
 \solution
 
 \begin{equation}
-\mid \Sigma_e \mid ^{\mid Q \mid}
+\mid \Sigma_\varepsilon \mid \times \mid P(Q) \mid
 \mbox { transitions}
 \end{equation}
-In an NFA, the max number of transitions is the total number of characters in the alphabet including the 'free' $\varepsilon$, to the power of the total number of states.
+In an NFA, the max number of transitions is the total number of characters in the alphabet $\Sigma \cup \{\varepsilon\}$ times the total number of possible states, which is the size of the power set of Q.
 
 \end{enumerate}
 
