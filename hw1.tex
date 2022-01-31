@@ -195,11 +195,10 @@ In a DFA, there is exactly 1 transition for every state-input pair. Thus, the nu
 \solution
 
 \begin{equation}
-\mid \Sigma_\varepsilon \mid \times \mid P(Q) \mid
+((\mid \Sigma \mid \times \mid Q \mid) + \mid Q \mid - 1) \times \mid Q \mid
 \mbox { transitions}
 \end{equation}
-In an NFA, the max number of transitions is the total number of characters in the alphabet $\Sigma \cup \{\varepsilon\}$ times the total number of possible states, which is the size of the power set of Q.
-
+In an NFA with the max number of transitions, each state $q$ in $Q$ has $\mid \Sigma \mid \times \mid Q \mid$ transitions (every input mapped to every state including itself) plus $Q-1$ more $\varepsilon$ transitions (to every state other than itself).
 \end{enumerate}
 
 
@@ -267,16 +266,15 @@ Draw a DFA which recognizes $L$. Be sure to include all states and transitions a
 \item \textbf{[6 points]} Consider the alphabet $\Sigma = \{a, b, \dots, z\}$. Let $L$ be the language of strings which end in either ``-ox" or ``-o". Draw a NFA which recognizes $L$. Your NFA should make use of $\epsilon$-transitions and/or have state-character pairs with 0 or more than 1 transitions (to truly take advantage of using NFAs!).
 
 \solution
+\\ \\
 \begin{tikzpicture}
 \node[state, initial] (q1) {$q_1$};
-\node[state, accepting, right of=q1] (q2) {$q_2$};
+\node[state, right of=q1] (q2) {$q_2$};
 \node[state, accepting, right of=q2] (q3) {$q_3$};
-\draw (q1) edge[loop above] node{a-n, p-z} (q1)
-(q1) edge[bend left, above] node{o} (q2)
-(q2) edge[bend left, below] node{a-n, p-w, y-z} (q1)
-(q2) edge[above] node{x, o} (q3)
+\draw (q1) edge[loop above] node{a-z} (q1)
+(q1) edge[above] node{o} (q2)
+(q2) edge[above] node{x, $\varepsilon$} (q3)
 \end{tikzpicture}
-
 
 \item \textbf{[4 points]}  Convert your NFA from part (a) to a DFA. Your DFA should be as simple as possible (e.g. any states which cannot be reached from the initial state should be removed).
 
