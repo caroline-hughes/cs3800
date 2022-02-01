@@ -283,11 +283,16 @@ Draw a DFA which recognizes $L$. Be sure to include all states and transitions a
 \\\\
 \begin{tikzpicture}
 \node[state, initial left] (1) {$q_1$};
-\node[state, accepting, right of=1] (123) {$q_1, q_2, q_3$};
+\node[state, accepting, below right of=1] (123) {$q_1, q_2, q_3$};
+\node[state, accepting, above right of=123] (13) {$q_1, q_3$};
 \draw 
-(1) edge[loop above] node{$a-n, p-z$} (1)
+(1) edge[loop above] node{$!o$} (1)
 (1) edge[above] node{$o$} (123)
-(123) edge[loop above] node{$a-z$} (123)
+(123) edge[loop below] node{$o$} (123)
+(123) edge[bend left, left] node{!(o or x)} (1)
+(123) edge[bend left, left] node{$x$} (13)
+(13) edge[bend left, left] node{$o$} (123)
+(13) edge[above] node{$!o$} (1)
 \end{tikzpicture}
 
 
