@@ -271,14 +271,24 @@ Draw a DFA which recognizes $L$. Be sure to include all states and transitions a
 \node[state, initial] (q1) {$q_1$};
 \node[state, right of=q1] (q2) {$q_2$};
 \node[state, accepting, right of=q2] (q3) {$q_3$};
-\draw (q1) edge[loop above] node{a-z} (q1)
-(q1) edge[above] node{o} (q2)
-(q2) edge[above] node{x, $\varepsilon$} (q3)
+\draw 
+(q1) edge[loop above] node{$a-z$} (q1)
+(q1) edge[above] node{$o$} (q2)
+(q2) edge[above] node{$x$, $\varepsilon$} (q3)
 \end{tikzpicture}
 
 \item \textbf{[4 points]}  Convert your NFA from part (a) to a DFA. Your DFA should be as simple as possible (e.g. any states which cannot be reached from the initial state should be removed).
 
 \solution
+\\\\
+\begin{tikzpicture}
+\node[state, initial left] (1) {$q_1$};
+\node[state, accepting, right of=1] (123) {$q_1, q_2, q_3$};
+\draw 
+(1) edge[loop above] node{$a-n, p-z$} (1)
+(1) edge[above] node{$o$} (123)
+(123) edge[loop above] node{$a-z$} (123)
+\end{tikzpicture}
 
 
 \item \textbf{[3 points]} Let $w$ be any word accepted by your DFA from part (b). Argue why $w$ belongs to $L$. You should consider any sequence of states for which the corresponding word is accepted.
