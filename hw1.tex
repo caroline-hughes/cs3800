@@ -198,7 +198,7 @@ In a DFA, there is exactly 1 transition for every state-input pair. Thus, the nu
 ((\mid \Sigma \mid \times \mid Q \mid) + \mid Q \mid - 1) \times \mid Q \mid
 \mbox { transitions}
 \end{equation}
-In an NFA with the max number of transitions, each state $q$ in $Q$ has $\mid \Sigma \mid \times \mid Q \mid$ transitions (every input mapped to every state including itself) plus $Q-1$ more $\varepsilon$ transitions (to every state other than itself).
+In an NFA, each state can have as many transitions as states, for each possible input as well as the 'free' $\varepsilon$ transition.  Thus, in an NFA with the max number of transitions, each state $q$ in $Q$ would have $\mid \Sigma \mid \times \mid Q \mid$ transitions (every input mapped to every state including itself) plus $Q-1$ more $\varepsilon$ transitions (to every state other than itself).
 \end{enumerate}
 
 
@@ -297,6 +297,12 @@ Draw a DFA which recognizes $L$. Be sure to include all states and transitions a
 \end{tikzpicture}
 
 \item \textbf{[3 points]} Let $w$ be any word accepted by your DFA from part (b). Argue why $w$ belongs to $L$. You should consider any sequence of states for which the corresponding word is accepted.
+\\\\
+From the starting state, a string $w$ may only progress to the next state, $\{1, 2, 3\}$, by reading an $o$ character. It may only remain at $\{1, 2, 3\}$ by continuing to read $o$ inputs. A string may only progress to the third state, $\{1, 3\}$ when the machine then reads an $x$ character after the current $o$. An $o$ read subsequently at $\{1, 3\}$ returns it to the previous state, $\{1, 2, 3\}$.
+
+From $\{1, 2, 3\}$, a character that is not $o$ or $x$ returns the machine to the initial rejection state. From $\{1, 3\}$, a character that is not $o$ returns the machine to the initial rejection state. 
+
+In turn, any string $w$ finishing at $\{1, 2, 3\}$ must end in an $-o$ and any string finishing  at $\{1, 3\}$ must end in $-ox$. Thus, $w$ belongs to $L$.
 
 \solution
  
